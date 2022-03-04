@@ -35,5 +35,12 @@ function setup() {
 }
 
 function draw() {
-  background(255, 255, 255);
+  background(fxhash()*255);
 }
+
+const container = document.createElement("div")
+container.innerText = `
+  random hash: ${fxhash}\n
+  some pseudo random values: [ ${fxrand()}, ${fxrand()}, ${fxrand()}, ${fxrand()}, ${fxrand()},... ]\n
+`
+document.body.prepend(container)
