@@ -22,6 +22,22 @@ console.log(fxrand()) // deterministic PRNG function, use it instead of Math.ran
 
 // this code writes the values to the DOM as an example
 
+//const NE = windowCenter();
+//const size = squareSize();
+const R = fxrand();
+let rt = [];
+for (let i = 0; i < 2048; i+=1){
+          
+    rt.push(fxrand());
+}
+const red = fxrand()*255;
+const green = fxrand()*255;
+const blue = fxrand()*255;
+const redt = fxrand()*255;
+const greent = fxrand()*255;
+const bluet = fxrand()*255;
+
+//returns biggest value out of width & height
 function squareSize(){
     let size;
     if (windowWidth > windowHeight) {
@@ -31,29 +47,54 @@ function squareSize(){
     }
     return size;
 }
-
+//make sure to resize the canvas when window is resized
 function windowResized(){
     resizeCanvas(windowWidth,windowHeight);
 }
-
+//calc. window center, used inside draw
 function windowCenter(){
-    return [windowWidth *0.5, windowHeight * 0.5]
+    return [windowWidth * 0.5, windowHeight * 0.5]
 }
 
+//create new canvas to windows size & randomize BG color
 function setup() {
     createCanvas(windowWidth,windowHeight);
-    
+    background(red,green,blue);
 }
-
+//where the magic happens
 function draw() {
+    
+    //make a variable size, which is always the biggest of width&height
+    const size = squareSize();
+    //put center into an array
     theCenter = windowCenter();
-    //call this into a variable
-    //background(fxrand()*255,fxrand()*255,fxrand()*255);
-    //tee mato :DDDD
-    fill(255);
-    strokeWeight(squareSize()/75);
-    stroke(0);
-    rect(theCenter[0], theCenter[1], squareSize()*0.75,squareSize()*0.75,squareSize()/5);
-    }
+    
+    //make points nw, sw, ne, se -center
+    //Is there an easier way?
+    nwCenter = [(theCenter[0] - theCenter[0]*0.5),(theCenter[1] - theCenter[1]*0.5)];
+    swCenter = [(theCenter[0] - theCenter[0]*0.5),(theCenter[1] + theCenter[1]*0.5)];
+    neCenter = [(theCenter[0] + theCenter[0]*0.5),(theCenter[1] - theCenter[1]*0.5)];
+    seCenter = [(theCenter[0] + theCenter[0]*0.5),(theCenter[1] + theCenter[1]*0.5)];
+    
+    //coordinates for nw, sw, ne, se
+    let coords = [nwCenter[0], nwCenter[1], swCenter[0], swCenter[1], neCenter[0], neCenter[1], seCenter[0], seCenter[1]];
+    //fill with second random rgb
+    fill(redt,greent,bluet);
+    //white outline for testing
+    stroke('#fff');
+    
+    //draws 4 circles to ne, sw, ne ,se
+    for (let i = 0; i < coords.length; i+= 2){
+          ellipse(coords[i], coords[i+1], 50*random_table[i], 50*random_table[i+1]);
+         }
+    //finally it's starting to open up to me
+    //this is NW, SW is + theCenter[1]+theCenter[1]
+    //NE theCenter[0] + theCenter[0]
+    //SE is both summed
+    for (let i = 0; i < 2048; i+= 1){
+          ellipse(theCenter[0]*rt[i], theCenter[1]*rt[i+1], 50, 50);
+          
+         }
+}
 
 
