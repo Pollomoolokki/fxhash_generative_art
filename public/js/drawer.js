@@ -22,6 +22,16 @@ console.log(fxrand()) // deterministic PRNG function, use it instead of Math.ran
 
 // this code writes the values to the DOM as an example
 
+function squareSize(){
+    let size;
+    if (windowWidth > windowHeight) {
+        size = windowHeight
+    } else {
+        size = windowWidth 
+    }
+    return size;
+}
+
 function windowResized(){
     resizeCanvas(windowWidth,windowHeight);
 }
@@ -32,15 +42,18 @@ function windowCenter(){
 
 function setup() {
     createCanvas(windowWidth,windowHeight);
+    
 }
 
 function draw() {
-  background(fxhash()*255);
-}
+    theCenter = windowCenter();
+    //call this into a variable
+    //background(fxrand()*255,fxrand()*255,fxrand()*255);
+    //tee mato :DDDD
+    fill(255);
+    strokeWeight(squareSize()/75);
+    stroke(0);
+    rect(theCenter[0], theCenter[1], squareSize()*0.75,squareSize()*0.75,squareSize()/5);
+    }
 
-const container = document.createElement("div")
-container.innerText = `
-  random hash: ${fxhash}\n
-  some pseudo random values: [ ${fxrand()}, ${fxrand()}, ${fxrand()}, ${fxrand()}, ${fxrand()},... ]\n
-`
-document.body.prepend(container)
+

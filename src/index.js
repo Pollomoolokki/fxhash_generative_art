@@ -21,19 +21,3 @@ console.log(fxrand()) // deterministic PRNG function, use it instead of Math.ran
 // }
 
 // this code writes the values to the DOM as an example
-
-function windowResized(){
-    resizeCanvas(windowWidth,windowHeight);
-}
-
-function windowCenter(){
-    return [windowWidth *0.5, windowHeight * 0.5]
-}
-
-function setup() {
-    createCanvas(windowWidth,windowHeight);
-}
-
-function draw() {
-  background(255, 255, 255);
-}
