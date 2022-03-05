@@ -85,7 +85,7 @@ function draw() {
     
     //draws 4 circles to ne, sw, ne ,se
     for (let i = 0; i < coords.length; i+= 2){
-          ellipse(coords[i], coords[i+1], 50*random_table[i], 50*random_table[i+1]);
+          ellipse(coords[i], coords[i+1], 50*rt[i], 50*rt[i+1]);
          }
     //finally it's starting to open up to me
     //this is NW, SW is + theCenter[1]+theCenter[1]
