@@ -81,17 +81,14 @@ function draw() {
     //fill with second random rgb
     fill(redt,greent,bluet);
     //white outline for testing
-    stroke('#fff');
     
-    //draws 4 circles to ne, sw, ne ,se
-    for (let i = 0; i < coords.length; i+= 2){
-          ellipse(coords[i], coords[i+1], 50*rt[i], 50*rt[i+1]);
-         }
+    
     //finally it's starting to open up to me
     //this is NW, SW is + theCenter[1]+theCenter[1]
     //NE theCenter[0] + theCenter[0]
     //SE is both summed
     for (let i = 0; i < 63; i+= 1){
+        stroke(colors[i+63],colors[i+64],colors[i+65]);
         fill(colors[i],colors[i+1],colors[i+2]);
           ellipse(theCenter[0]*rt[i], theCenter[1]*rt[i+1], 50, 50);
           ellipse(theCenter[0]*rt[i+63], theCenter[1]+theCenter[1]*rt[i+64], 50, 50);
