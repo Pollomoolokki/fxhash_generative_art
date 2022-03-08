@@ -30,6 +30,11 @@ for (let i = 0; i < 2048; i+=1){
     colors.push(fxrand()*255);
 }
 
+let strokecolors = [];
+for (let i = 0; i < 2048; i+=1){
+    strokecolors.push(fxrand()*255);
+}
+
 const red = fxrand()*255;
 const green = fxrand()*255;
 const blue = fxrand()*255;
@@ -88,7 +93,9 @@ function draw() {
     //NE theCenter[0] + theCenter[0]
     //SE is both summed
     for (let i = 0; i < 63; i+= 1){
-        stroke(colors[i+63],colors[i+64],colors[i+65]);
+        //fill with random colors every loop
+        stroke(strokecolors[i],strokecolors[i],strokecolors[i]);
+        //fill with random colors every loop
         fill(colors[i],colors[i+1],colors[i+2]);
         ellipse(theCenter[0]*rt[i], theCenter[1]*rt[i+1], 50, 50);
         ellipse(theCenter[0]*rt[i+63], theCenter[1]+theCenter[1]*rt[i+64], 50, 50);
