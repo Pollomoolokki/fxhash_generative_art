@@ -14,20 +14,38 @@ console.log(fxrand()) // deterministic PRNG function, use it instead of Math.ran
 // More about it in the guide, section features:
 // [https://fxhash.xyz/articles/guide-mint-generative-token#features]
 //
-// window.$fxhashFeatures = {
-//   "Background": "Black",
-//   "Number of lines": 10,
-//   "Inverted": true
-// }
+
 
 //make a rt -table
-let ps = 0;
 let rt = [];
 //fill the rt -table with 2048 random points (between 0 and 1)
 for (let i = 0; i < 2048; i+=1){
           
     rt.push(fxrand());
 }
+
+window.$fxhashFeatures = {
+"Sacred texts": GetTexts(rt[0]),
+"Squares": GetSquares(rt[0]),
+"lines": GetLines(rt[0])
+}
+function GetTexts(value){
+    if (value*10 < 10 && value*10 >= 5) return "unlucky"
+    if (value*10 < 5 && value*10 >= 2.1) return "summoning the gnomes"
+    if (value*10 < 2.1 && value*10 >= 0.21) return "praise Satoshi!🥸"
+    if (value*10 < 0.21 && value*10 >= 0.021) return "beware the eye of Moolokki👁"
+    if (value*10 < 0.021 && value*10 >= 0) return "Babylon kingdom fall🔻"
+}
+
+function GetSquares(value){
+if (value*10 < 2.1 && value*10 >= 8.4) return "lucky!🥳"  
+return "anlaki"  
+}
+function GetLines(value){
+if(value*10 < 2.1) return "oh no! vandals struck🖋"
+    return "you evaded the vandals"
+}
+
 
 let rto = [];
 let rttw= [];
@@ -39,7 +57,6 @@ for (let i = 0; i < 2048; i+=1){
     rtth.push(fxrand());
     rtf.push(fxrand());
 }
-
 
 //colors -table
 let colors = [];
@@ -149,7 +166,7 @@ function draw() {
         ellipse(tc[0]+tc[0]*rttw[i], tc[1]+tc[1]*rttw[rttw.length-i], 50, 50);
         ellipse(tc[0]+tc[0]*rtth[i], tc[1]*rtth[rtth.length-i], 50, 50);  
         
-        if (rt[0] * 10 > 2.1) {
+        if (rt[0] * 10 > 8.4 && rt[0] < 2.1) {
         fill(colors[i+64],colors[i+65],colors[i+67]);
         square(tc[0]*rtf[i], tc[1]*rtf[rtf.length-i], 50);
         square(tc[0]*rto[i], tc[1]+tc[1]*rt[rto.length-i], 50);
@@ -171,6 +188,5 @@ function draw() {
  
         
     }
-    
 }
 
